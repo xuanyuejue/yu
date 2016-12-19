@@ -7,14 +7,15 @@
 	</head>
 
 	<body>
-		<button id="aas"onclick="asd(123,789)">sadas</button>
+		<button id="aas" onclick="asd(123,789)">sadas</button>
 		<script>
 			var arr = [
 				[1, 2],
 				[3, 4]
 			]
-			function asd(a,b){
-				console.log(a+"+"+b)
+
+			function asd(a, b) {
+				console.log(a + "+" + b)
 			}
 			for(var i = 0; i < arr.length; i++) {
 				var arr1 = arr[i]
@@ -22,8 +23,81 @@
 					var arr2 = arr1[j]
 
 					console.log(arr2)
-				}   
+				}
 			}
+			console.log(arr.toString())
+			var ter = "haghgdasf"
+			console.log(ter.split(""))
+			var NV = {};
+			var UA = navigator.userAgent.toLowerCase();
+			try {
+				NV.name = !-[1, ] ? 'ie' :
+					(UA.indexOf("firefox") > 0) ? 'firefox' :
+					(UA.indexOf("chrome") > 0) ? 'chrome' :
+					window.opera ? 'opera' :
+					window.openDatabase ? 'safari' :
+					'unkonw';
+			} catch(e) {};
+			try {
+				NV.version = (NV.name == 'ie') ? UA.match(/msie ([\d.]+)/)[1] :
+					(NV.name == 'firefox') ? UA.match(/firefox\/([\d.]+)/)[1] :
+					(NV.name == 'chrome') ? UA.match(/chrome\/([\d.]+)/)[1] :
+					(NV.name == 'opera') ? UA.match(/opera.([\d.]+)/)[1] :
+					(NV.name == 'safari') ? UA.match(/version\/([\d.]+)/)[1] :
+					'0';
+			} catch(e) {};
+			try {
+				NV.shell = (UA.indexOf('360ee') > -1) ? '360极速浏览器' :
+					(UA.indexOf('360se') > -1) ? '360安全浏览器' :
+					(UA.indexOf('se') > -1) ? '搜狗浏览器' :
+					(UA.indexOf('aoyou') > -1) ? '遨游浏览器' :
+					(UA.indexOf('theworld') > -1) ? '世界之窗浏览器' :
+					(UA.indexOf('worldchrome') > -1) ? '世界之窗极速浏览器' :
+					(UA.indexOf('greenbrowser') > -1) ? '绿色浏览器' :
+					(UA.indexOf('qqbrowser') > -1) ? 'QQ浏览器' :
+					(UA.indexOf('baidu') > -1) ? '百度浏览器' :
+					'未知或无壳';
+			} catch(e) {};
+			console.log('浏览器UA=' + UA +
+				'\n\n浏览器名称=' + NV.name +
+				'\n\n浏览器版本=' + parseInt(NV.version) +
+				'\n\n浏览器外壳=' + NV.shell);
+		</script>
+		<script>
+			function IsPC() {
+				var userAgentInfo = navigator.userAgent;
+				var Agents = ["Android", "iPhone",
+					"SymbianOS", "Windows Phone",
+					"iPad", "iPod"
+				];
+				var flag = true;
+				for(var v = 0; v < Agents.length; v++) {
+					if(userAgentInfo.indexOf(Agents[v]) > 0) {
+						flag = false;
+						console.log(Agents[v])
+						break;
+					}
+				}
+				return flag;
+			}
+			IsPC()
+		</script>
+		<script>
+			function browserRedirect() {
+				var sUserAgent = navigator.userAgent.toLowerCase();
+				var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+				var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+				var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+				var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+				var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+				var bIsAndroid = sUserAgent.match(/android/i) == "android";
+				var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+				var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+				if(!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
+//										window.location.href = 'new_file.html';
+				}
+			}
+			browserRedirect();
 		</script>
 	</body>
 
