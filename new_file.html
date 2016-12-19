@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+		<div id="app">
+			<p>
+				<router-link to="/user/foo" tag="li">
+					<a>/user/foo</a>
+				</router-link>
+				<router-link to="/user/foo/profile" tag="li">
+					<a>/user/foo/profile</a>
+				</router-link>
+				<router-link to="/user/foo/posts" tag="li">
+					<a>/user/foo/posts</a>
+				</router-link>
+			</p>
+			<router-view></router-view>
+		</div>
+		<script>
+			const User = {
+				template: `
+			    <div class="user">
+			      <h2>User {{ $route.params.id }}</h2>
+			      <router-view></router-view>
+			    </div>
+			 	 `
+			}
+
+			const UserHome = {
+				template: `
+  				<div>
+					<router-link to="/user/foo/sa"tag="li"><a>11</a></router-link>	
+					<router-link to="/user/foo/sas"tag="li"><a>2</a></router-link>
+					<router-view></router-view>
+				</div>
+				`
+			}
+			const UserHome1 = {
+				template: '<div>Home1</div>'
+			}
+			const UserHome2 = {
+				template: '<div>Home2</div>'
+			}
+			const UserProfile = {
+				template: '<div>Profile</div>'
+			}
+			const UserPosts = {
+				template: '<div>Posts</div>'
+			}
+
+			const router = new VueRouter({
+				routes: [{
+					path: '/user/:id',
+					component: User,
+					children: [{
+						path: '',
+						component: UserHome,
+						children: [{
+							path: 'sa',
+							component: UserHome1
+						}, {
+							path: 'sas',
+							component: UserHome2
+						}]
+					}, {
+						path: 'profile',
+						component: UserProfile
+					}, {
+						path: 'posts',
+						component: UserPosts
+					}]
+				}]
+			})
+
+			const app = new Vue({
+				router
+			}).$mount('#app')
+		</script>
+	</body>
+
+</html>

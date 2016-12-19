@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="app">
+			<input v-model="mess" />
+			<p v-bind:style="stylec">{{mess}}</p>
+			<button @click="aa">asdafd</button>
+			<p v-if="ss">
+				123
+			</p>
+			<p v-else>
+				456
+			</p>
+			<button @click="aaa">asasdadafd</button>
+			<ul>
+				<li v-for="(i,index) in is">
+					{{index+1}}-{{i.mes}}-{{i.asd}}
+				</li>
+			</ul>
+			<p>{{cun}}</p>
+			<button v-on:click="as">{{cun}}</button><button v-on:click="as">{{cun}}</button>
+			<p>
+				<label><input type="checkbox"v-model="checked" />{{checked}}</label>
+			</p>
+			<div>
+				<label><input type="checkbox"v-model="checkname" value="1"/>1 </label>
+				<label><input type="checkbox"v-model="checkname" value="2"/>2 </label>
+				<label><input type="checkbox"v-model="checkname" value="3" />3 </label>
+				<p>{{checkname}}</p>
+			</div>
+			<div>
+				<label><input type="radio"v-model="pick" value="1"/>1 </label>
+				<label><input type="radio"v-model="pick" value="2"/>2 </label>
+				<p>{{pick}}</p>
+			</div>
+			<div>
+				<select v-model="selected" multiple>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+				</select>
+				<p>{{selected}}</p>
+			</div>
+			<div>
+				<select v-model="selected1">
+					<option v-for="o in os" :value="o.v">{{o.tx}}</option>
+				</select>
+				<p>{{selected1}}</p>
+			</div>
+		</div>
+		<div id="example">
+			<my-component></my-component>
+		</div>
+		<div id="example-2">
+			<simple-counter v-on:eaa="incrementTotal1"></simple-counter>
+			<simple-counter v-on:eaa="incrementTotal1"></simple-counter>
+			<simple-counter v-on:eaa="incrementTotal1"></simple-counter>
+			<p>{{total1}}</p>
+		</div>
+		<div id="counter-event-example">
+			<p>{{ total }}</p>
+			<button-counter v-on:increment="incrementTotal"></button-counter>
+			<button-counter v-on:increment="incrementTotal"></button-counter>
+		</div>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script>
+			var mess = "asd"
+			var os = [{
+				tx: 'a',
+				v: 'a1'
+			}, {
+				tx: 'b',
+				v: 'b1'
+			}, {
+				tx: 'c',
+				v: 'c1'
+			}, {
+				tx: 'd',
+				v: 'd1'
+			}, {
+				tx: 'e',
+				v: 'e1'
+			}, {
+				tx: 'f',
+				v: 'f1'
+			}, ]
+			var asd = [{
+				mes: 'a',
+				asd: 'a1'
+			}, {
+				mes: 'b',
+				asd: 'b1'
+			}, {
+				mes: 'c',
+				asd: 'c1'
+			}, {
+				mes: 'd',
+				asd: 'd1'
+			}, {
+				mes: 'e',
+				asd: 'e1'
+			}, {
+				mes: 'f',
+				asd: 'f1'
+			}, ]
+			var stylec = {
+				color: 'red',
+				fontSize: '25px'
+			}
+			new Vue({
+				el: "#app",
+				data: {
+					mess: mess,
+					stylec: stylec,
+					ss: true,
+					is: asd,
+					cun: 0,
+					checked: true,
+					checkname: [],
+					pick: "2",
+					selected: [],
+					os: os,
+					selected1: "a"
+				},
+				methods: {
+					aa: function() {
+						this.mess = this.mess.split("").reverse().join("")
+					},
+					aaa: function() {
+						this.ss = !this.ss
+					},
+					as: function() {
+						this.cun += 1
+					}
+				},
+				components: {
+
+				}
+			})
+			Vue.component('my-component', {
+				template: '<div>A custom component!</div>'
+			})
+			new Vue({
+				el: '#example'
+			})
+			Vue.component('simple-counter', {
+				template: '<button v-on:click="ea">{{ counte }}</button>',
+				data: function() {
+					return {
+						counte: 0
+					}
+				},
+				methods:{
+					ea:function(){
+						this.counte += 1
+						this.$emit('eaa')
+					}
+				}
+			})
+			new Vue({
+				el: '#example-2',
+				data: {
+					total1: 0
+				},
+				methods: {
+					incrementTotal1: function() {
+						this.total1 += 1
+					}
+				}
+			})
+			Vue.component('button-counter', {
+				template: '<button v-on:click="increment">{{ counter }}</button>',
+				data: function() {
+					return {
+						counter: 0
+					}
+				},
+				methods: {
+					increment: function() {
+						this.counter += 1
+						this.$emit('increment')
+					}
+				},
+			})
+			new Vue({
+				el: '#counter-event-example',
+				data: {
+					total: 0
+				},
+				methods: {
+					incrementTotal: function() {
+						this.total += 1
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>
